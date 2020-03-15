@@ -3,6 +3,8 @@
 #property version   "1.00"
 #property strict
 
+const string templateName = "adam_black_candle.tpl";
+
 int periods[] = {PERIOD_MN1, PERIOD_W1, PERIOD_D1, PERIOD_H1, PERIOD_M15};
 
 long newChartId;
@@ -12,7 +14,7 @@ void OnInit()
 {
    newChartId = ChartOpen(SymbolName(1, true), PERIOD_D1);
       Sleep(100);
-   ChartApplyTemplate(newChartId, "adam_black_candle.tpl");
+   ChartApplyTemplate(newChartId, templateName);
       Sleep(100);
    ChartSetInteger(newChartId, CHART_SCALE, 0, 3);
       Sleep(100);
@@ -21,7 +23,7 @@ void OnInit()
    FileWriteString(htmlFile, "<html><head><title>Market Scan</title></head><body>");      
 }
 
-int OnDeinit(const int reason)
+void OnDeinit(const int reason)
 {
    FileWriteString(htmlFile, "</body></html>");
    FileClose(htmlFile);   
@@ -29,8 +31,6 @@ int OnDeinit(const int reason)
    ChartClose(newChartId);
    
    Alert("Scan completed. Report generated.");
-
-   return(reason);
 }
 
 void OnStart()
