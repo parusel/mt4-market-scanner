@@ -1,6 +1,6 @@
 #property copyright "Adam Parusel"
 #property link      "https://adamparusel.com"
-#property version   "1.00"
+#property version   "0.1"
 #property strict
 
 const string templateName = "adam_black_candle.tpl";
